@@ -34,7 +34,7 @@ jobs:
     - name: Tag and Push Docker Image
       env:
         IMAGE_NAME: surfergolfer.jfrog.io/rapid-test-docker/jfrog-docker-example-image:${{ github.run_number }}
-        run: |
+      run: |
           docker tag docker.io/library/spring-petclinic:3.1.0-SNAPSHOT $IMAGE_NAME
           jf docker push $IMAGE_NAME
   
@@ -42,7 +42,7 @@ jobs:
       env:
         JFROG_CLI_BUILD_NAME: jfrog-docker-build-example
         JFROG_CLI_BUILD_NUMBER: ${{ github.run_number }}
-        run: |
-            jf rt build-collect-env
-            jf rt build-add-git
-            jf rt build-publish
+      run: |
+          jf rt build-collect-env
+          jf rt build-add-git
+          jf rt build-publish
