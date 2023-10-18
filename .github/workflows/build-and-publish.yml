@@ -49,4 +49,4 @@ jobs:
 
     - name: Xray Scan
       run: |
-        jf rt xray-scan jfrog-docker-build-demo ${{ github.run_number }}
+        jfrog rt build-scan jfrog-docker-build-demo ${{ github.run_number }}
