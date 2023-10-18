@@ -32,8 +32,8 @@ jobs:
         JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
 
     - name: Tag and Push Docker Image
-        env:
-          IMAGE_NAME: surfergolfer.jfrog.io/rapid-test-docker/jfrog-docker-example-image:${{ github.run_number }}
+      env:
+        IMAGE_NAME: surfergolfer.jfrog.io/rapid-test-docker/jfrog-docker-example-image:${{ github.run_number }}
         run: |
           docker tag docker.io/library/spring-petclinic:3.1.0-SNAPSHOT $IMAGE_NAME
           jf docker push $IMAGE_NAME
