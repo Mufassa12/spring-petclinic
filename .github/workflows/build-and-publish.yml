@@ -40,7 +40,7 @@ jobs:
   
     - name: Publish Build info With JFrog CLI
       env:
-        JFROG_CLI_BUILD_NAME: jfrog-docker-build-example
+        JFROG_CLI_BUILD_NAME: jfrog-docker-build-demo
         JFROG_CLI_BUILD_NUMBER: ${{ github.run_number }}
       run: |
           jf rt build-collect-env
