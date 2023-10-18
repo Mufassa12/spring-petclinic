@@ -33,5 +33,5 @@ jobs:
 
     - name: Publish Docker Image
       run: |
-        jfrog rt docker-push <YOUR-IMAGE-NAME>:<YOUR-TAG> <YOUR-TARGET-REPOSITORY>
-        jfrog rt bp <BUILD-NAME> <BUILD-NUMBER>
+        jfrog rt docker-push docker.io/library/spring-petclinic:3.1.0-SNAPSHOT:1.0.0 surfergolfer.jfrog.io/prd-spring-dev-docker/rapid-test-image
+        jfrog rt bp rapid-test-image 1.0.0
