@@ -46,3 +46,7 @@ jobs:
           jf rt build-collect-env
           jf rt build-add-git
           jf rt build-publish
+
+    - name: Xray Scan
+      run: |
+        jf rt xray-scan jfrog-docker-build-demo ${{ github.run_number }}
