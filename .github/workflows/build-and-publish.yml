@@ -31,7 +31,18 @@ jobs:
         JF_URL: ${{ secrets.JF_URL }}
         JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
 
-    - name: Publish Docker Image
+    - name: Tag and Push Docker Image
+        env:
+          IMAGE_NAME: surfergolfer.jfrog.io/rapid-test-docker/jfrog-docker-example-image:${{ github.run_number }}
+        run: |
+          docker tag docker.io/library/spring-petclinic:3.1.0-SNAPSHOT $IMAGE_NAME
+          jf docker push $IMAGE_NAME
+  
+    - name: Publish Build info With JFrog CLI
+      env:
+        JFROG_CLI_BUILD_NAME: jfrog-docker-build-example
+        JFROG_CLI_BUILD_NUMBER: ${{ github.run_number }}
       run: |
-        jfrog rt docker-push docker.io/library/spring-petclinic:3.1.0-SNAPSHOT:1.0.0 surfergolfer.jfrog.io/prd-spring-dev-docker/rapid-test-image
-        jfrog rt bp rapid-test-image 1.0.0
+        jf rt build-collect-env
+        jf rt build-add-git
+        jf rt build-publish
